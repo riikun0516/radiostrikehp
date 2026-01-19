@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Cloudflare Turnstile Site Key
+const kTurnstileSiteKey = '0x4AAAAAAA1B9mC-_ZxaHYCj';
+const kBaseApiUrl = 'https://api.radiostrike.jp';
+
+// ビジネス向けの問い合わせ種別
+const contactSubjects = [
+  '広告掲載・スポンサーシップについて',
+  '取材・メディア出演のご依頼',
+  '著作権・ライセンスに関するお問い合わせ',
+  '技術的な不具合のご報告',
+  'その他ビジネスに関するお問い合わせ',
+];
+---
+
+<Layout title="お問い合わせ - RadioStrike">
+  <div class="contact-container">
+    <div class="header">
+      <h1>Contact</h1>
+      <p>RadioStrikeへのビジネスに関するお問い合わせは、以下のフォームよりご連絡ください。</p>
+    </div>
+
+    <form id="contact-form" class="biz-form">
+      <div class="field-row">
+        <div class="field">
+          <label>貴社名（個人の場合は「個人」と記入）</label>
+          <input type="text" name="company" placeholder="株式会社〇〇" required />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>ご担当者様氏名</label>
+          <input type="text" name="name" placeholder="山田 太郎" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>メールアドレス</label>
+        <input type="email" name="email" placeholder="email@example.com" required />
+      </div>
+
+      <div class="field">
+        <label>お問い合わせ件名</label>
+        <select name="subject" required>
+          <option value="" disabled selected>選択してください</option>
+          {contactSubjects.map(s => <option value={s}>{s}</option>)}
+        </select>
+      </div>
+
+      <div class="field">
+        <label>お問い合わせ内容詳細</label>
+        <textarea name="body" rows="10" placeholder="具体的な内容をご記入ください" required></textarea>
+      </div>
+
+      <div class="captcha-box">
+        <div class="cf-turnstile" data-sitekey={kTurnstileSiteKey}></div>
+      </div>
+
+      <button type="submit" id="submit-btn" class="submit-btn">
+        送信内容を確認して送信する
+      </button>
+      
+      <div id="status-msg" class="status-msg"></div>
+    </form>
+  </div>
+</Layout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script is:inline define:vars={{ kBaseApiUrl }}>
+  const form = document.getElementById('contact-form');
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('status-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    msg.innerText = "送信中...";
+
+    const fd = new FormData(form);
+    
+    // Python側の send_message に渡すデータ
+    // ビジネス向けのため、bodyの先頭に会社名と件名を付与して整理
+    const company = fd.get('company');
+    const subject = fd.get('subject');
+    const originalBody = fd.get('body');
+    
+    const combinedBody = `【会社名】: ${company}\n【件名】: ${subject}\n\n${originalBody}`;
+
+    const payload = {
+      type: 'contact', // ここをcontactにすることでメールのみ通知される
+      name: fd.get('name'),
+      email: fd.get('email'),
+      body: combinedBody,
+      cf_turnstile_response: fd.get('cf-turnstile-response')
+    };
+
+    try {
+      const response = await fetch(`${kBaseApiUrl}/api/podcast/message`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.status === 201) {
+        alert("お問い合わせを受け付けました。担当者より折り返しご連絡いたします。");
+        form.reset();
+        if (window.turnstile) window.turnstile.reset();
+        msg.innerText = "";
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || "送信に失敗しました");
+      }
+    } catch (err) {
+      msg.innerText = "エラー: " + err.message;
+      msg.style.color = "#d32f2f";
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .contact-container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
+  .header { border-left: 4px solid #333; padding-left: 20px; margin-bottom: 40px; }
+  .header h1 { font-size: 32px; font-weight: 800; letter-spacing: 0.05em; margin-bottom: 10px; }
+  .header p { color: #666; font-size: 16px; }
+
+  .biz-form { background: #fff; padding: 40px; border-radius: 4px; border: 1px solid #eee; }
+  .field { margin-bottom: 25px; }
+  label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 14px; color: #333; }
+  
+  input, select, textarea { 
+    width: 100%; 
+    padding: 14px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 16px; 
+    box-sizing: border-box; 
+    background-color: #fcfcfc;
+  }
+  
+  input:focus, textarea:focus { border-color: #000; outline: none; background-color: #fff; }
+  
+  .captcha-box { margin: 30px 0; }
+  
+  .submit-btn { 
+    width: 100%; 
+    background: #333; 
+    color: white; 
+    padding: 18px; 
+    border: none; 
+    border-radius: 4px; 
+    font-weight: 700; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background 0.3s;
+  }
+  .submit-btn:hover { background: #000; }
+  .submit-btn:disabled { background: #999; }
+  
+  .status-msg { margin-top: 20px; text-align: center; font-size: 14px; }
+</style>

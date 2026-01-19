@@ -1,0 +1,178 @@
+---
+export const prerender = false;
+import Layout from '../layouts/Layout.astro';
+
+const kBaseApiUrl = 'https://api.radiostrike.jp';
+
+interface Episode {
+  id: number;
+  title: string;
+  description: string;
+  publish_at: string;
+}
+
+let episodes: Episode[] = [];
+
+try {
+  const res = await fetch(`${kBaseApiUrl}/api/podcast/episodes`);
+  if (res.ok) {
+    episodes = await res.json();
+  }
+} catch (e) {
+  console.error("Fetch Error:", e);
+}
+
+// 月ごとのアーカイブなどのフィルタリング機能を将来的に入れるための土台
+const totalCount = episodes.length;
+---
+
+<Layout title="All Episodes - RadioStrike Archive">
+  <div class="archive-header">
+    <div class="header-content">
+      <nav class="breadcrumb"><a href="/">Home</a> / <span>Episodes</span></nav>
+      <h1>Episodes Archive</h1>
+      <p class="count-info">全 {totalCount} 件の配信があります</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="episodes-wrapper">
+      <div class="filter-bar">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="episode-search" placeholder="エピソードを検索..." />
+        </div>
+      </div>
+
+      <div class="episodes-list" id="episodes-container">
+        {episodes.map((ep: Episode) => (
+          <article class="episode-item" data-title={ep.title.toLowerCase()}>
+            <a href={`/episode/${ep.id}`} class="item-link">
+              <div class="item-date">
+                <span class="day">{new Date(ep.publish_at).getDate()}</span>
+                <span class="month-year">{new Date(ep.publish_at).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short' })}</span>
+              </div>
+              <div class="item-visual">
+                <img src={`${kBaseApiUrl}/uploads/podcast_cover.jpg`} alt={ep.title} />
+              </div>
+              <div class="item-body">
+                <h3>{ep.title}</h3>
+                <p class="description">{ep.description?.substring(0, 80)}...</p>
+                <div class="item-footer">
+                   <span class="play-label">LISTEN NOW</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  // クライアントサイドでの簡易検索機能
+  const searchInput = document.getElementById('episode-search');
+  const items = document.querySelectorAll('.episode-item');
+
+  searchInput?.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    items.forEach(item => {
+      const title = item.getAttribute('data-title') || '';
+      item.style.display = title.includes(term) ? 'block' : 'none';
+    });
+  });
+</script>
+
+<style>
+  .archive-header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 60px 0;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .breadcrumb { font-size: 13px; color: #888; margin-bottom: 15px; }
+  .breadcrumb a:hover { color: #3f51b5; text-decoration: underline; }
+  
+  h1 { font-size: 42px; font-weight: 900; color: #1a1a1a; letter-spacing: -0.02em; }
+  .count-info { color: #3f51b5; font-weight: bold; margin-top: 10px; }
+
+  .episodes-wrapper { max-width: 900px; margin: 0 auto; }
+
+  /* 検索バー */
+  .filter-bar { margin-bottom: 40px; }
+  .search-input {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #aaa; }
+  #episode-search {
+    width: 100%;
+    padding: 12px 12px 12px 45px;
+    border: 2px solid #eee;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+  #episode-search:focus { outline: none; border-color: #3f51b5; }
+
+  /* アーカイブリスト：横長のリスト形式 */
+  .episodes-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .episode-item {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    border: 1px solid #f0f0f0;
+  }
+
+  .episode-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-color: #3f51b5;
+  }
+
+  .item-link { display: flex; align-items: stretch; padding: 20px; }
+
+  .item-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    border-right: 1px solid #eee;
+    margin-right: 25px;
+  }
+  .day { font-size: 28px; font-weight: 900; color: #3f51b5; line-height: 1; }
+  .month-year { font-size: 12px; color: #888; margin-top: 5px; text-transform: uppercase; }
+
+  .item-visual { width: 100px; height: 100px; flex-shrink: 0; }
+  .item-visual img { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; }
+
+  .item-body { flex: 1; padding: 0 25px; display: flex; flex-direction: column; justify-content: center; }
+  .item-body h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; color: #333; }
+  .description { font-size: 14px; color: #666; line-height: 1.5; }
+
+  .item-footer { margin-top: 12px; }
+  .play-label {
+    font-size: 11px;
+    font-weight: 900;
+    color: #3f51b5;
+    letter-spacing: 0.1em;
+    border: 1px solid #3f51b5;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* モバイル対応 */
+  @media (max-width: 600px) {
+    .item-link { flex-direction: column; }
+    .item-date { flex-direction: row; border-right: none; border-bottom: 1px solid #eee; margin-right: 0; margin-bottom: 15px; padding-bottom: 10px; min-width: auto; justify-content: flex-start; gap: 10px; }
+    .item-visual { width: 60px; height: 60px; margin-bottom: 10px; }
+    .item-body { padding: 0; }
+  }
+</style>

@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Cloudflare Turnstile Site Key (Flutter版で使用していたもの)
+const kTurnstileSiteKey = '0x4AAAAAAA1B9mC-_ZxaHYCj'; 
+const kBaseApiUrl = 'https://api.radiostrike.jp';
+
+const letterTypes = [
+  'ふつおた (普通のお便り)',
+  '笑える嘘ニュース',
+  '模擬彼女を作ってみた',
+  '自分にしてほしいこと',
+  'こじゃれただじゃれ',
+  '鉄道ガジェットニュース',
+];
+---
+
+<Layout title="お便りをお送りください - RadioStrike">
+  <div class="form-container">
+    <h1>お便りフォーム</h1>
+    <p class="intro">番組へのメッセージをお待ちしています！</p>
+
+    <form id="letter-form" class="letter-form">
+      <div class="field">
+        <label>お便りの種類</label>
+        <select name="letter_type" required>
+          {letterTypes.map(type => <option value={type}>{type}</option>)}
+        </select>
+      </div>
+
+      <div class="field">
+        <label>ラジオネーム</label>
+        <input type="text" name="name" placeholder="匿名希望" required />
+      </div>
+
+      <div class="field">
+        <label>メールアドレス (任意)</label>
+        <input type="email" name="email" placeholder="example@gmail.com" />
+      </div>
+
+      <div class="field">
+        <label>本文</label>
+        <textarea name="body" rows="8" placeholder="メッセージ内容" required></textarea>
+      </div>
+
+      <div class="captcha-area">
+        <div class="cf-turnstile" data-sitekey={kTurnstileSiteKey}></div>
+      </div>
+
+      <button type="submit" id="send-btn" class="send-btn">メッセージを送信</button>
+      <div id="status" class="status-msg"></div>
+    </form>
+  </div>
+</Layout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script is:inline define:vars={{ kBaseApiUrl }}>
+  const form = document.getElementById('letter-form');
+  const btn = document.getElementById('send-btn');
+  const status = document.getElementById('status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    status.innerText = "送信中...";
+
+    const fd = new FormData(form);
+    
+    // Pythonの send_message 関数が期待する構造
+    const payload = {
+      type: 'letter', 
+      name: fd.get('name'),
+      email: fd.get('email'),
+      body: fd.get('body'),
+      letter_type: fd.get('letter_type'),
+      cf_turnstile_response: fd.get('cf-turnstile-response') 
+    };
+
+    try {
+      const res = await fetch(`${kBaseApiUrl}/api/podcast/message`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.status === 201) {
+        alert("お便りを送信しました！ありがとうございます。");
+        form.reset();
+        // Turnstileをリセット
+        if (window.turnstile) window.turnstile.reset();
+        status.innerText = "";
+      } else {
+        const err = await res.json();
+        throw new Error(err.error || "送信に失敗しました");
+      }
+    } catch (e) {
+      status.innerText = "エラー: " + e.message;
+      console.error(e);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .form-container { max-width: 600px; margin: 40px auto; padding: 0 20px; }
+  h1 { font-size: 26px; font-weight: bold; margin-bottom: 8px; }
+  .intro { color: #666; margin-bottom: 30px; }
+  .letter-form { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  .field { margin-bottom: 20px; }
+  label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+  input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit; font-size: 16px; }
+  .captcha-area { margin: 25px 0; }
+  .send-btn { width: 100%; background: #3f51b5; color: white; padding: 16px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: background 0.2s; }
+  .send-btn:hover { background: #303f9f; }
+  .send-btn:disabled { background: #999; }
+  .status-msg { margin-top: 15px; text-align: center; color: #d32f2f; font-size: 14px; }
+</style>

@@ -1,0 +1,65 @@
+---
+export const prerender = false;
+import Layout from '../../layouts/Layout.astro';
+const kBaseApiUrl = 'https://api.radiostrike.jp';
+
+interface NewsItem {
+  id: number;
+  title: string;
+  created_at: string;
+}
+
+let news: NewsItem[] = [];
+try {
+  const res = await fetch(`${kBaseApiUrl}/api/podcast/news`);
+  if (res.ok) news = await res.json();
+} catch (e) { console.error(e); }
+
+const AD_CLIENT = "pub-4672119085382684";
+const AD_SLOT = "6212645008";
+---
+
+<Layout title="お知らせ一覧">
+  <div class="news-header">
+    <h1 class="title-blue">News</h1>
+  </div>
+
+  <div class="news-list">
+    {news.map((item: NewsItem, index: number) => (
+      <>
+        <article class="news-card animate-in" style={`animation-delay: ${index * 0.05}s`}>
+          <a href={`/news/${item.id}`}>
+            <time>{new Date(item.created_at).toLocaleDateString('ja-JP')}</time>
+            <h2>{item.title}</h2>
+            <span class="read-more">詳細を見る →</span>
+          </a>
+        </article>
+
+        {/* 2記事ごとに広告を挿入 */}
+        {(index + 1) % 2 === 0 && (
+          <div class="ad-slot-wrapper">
+            <ins class="adsbygoogle"
+                 style="display:block; width: 100%; height: 100%;"
+                 data-ad-client={AD_CLIENT}
+                 data-ad-slot={AD_SLOT}
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="false"></ins>
+          </div>
+        )}
+      </>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
+  .title-blue { border-left: 6px solid #3f51b5; padding-left: 20px; font-size: 32px; margin-bottom: 40px; font-weight: 900; }
+  .news-list { display: flex; flex-direction: column; gap: 20px; }
+  .news-card { background: white; border-radius: 12px; border: 1px solid #eee; transition: transform 0.2s; }
+  .news-card:hover { transform: scale(1.01); border-color: #3f51b5; }
+  .news-card a { display: block; padding: 25px; }
+  time { color: #3f51b5; font-weight: 800; font-size: 13px; }
+  h2 { font-size: 18px; margin: 8px 0; color: #333; }
+  .read-more { font-size: 13px; color: #666; font-weight: bold; }
+</style>

@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="クレジット - RadioStrike">
+  <div class="credit-container">
+    <div class="credit-header">
+      <h1>Credits</h1>
+      <p>RadioStrikeを支える制作陣</p>
+    </div>
+
+    <div class="credit-section">
+      <h2>Program Production</h2>
+      <div class="member">
+        <span class="role">パーソナリティ / 構成</span>
+        <span class="name">RadioStrike Team</span>
+      </div>
+    </div>
+
+    <div class="credit-section">
+      <h2>System & Design</h2>
+      <div class="member">
+        <span class="role">Web & App Development</span>
+        <span class="name">RadioStrike Systems</span>
+      </div>
+      <div class="member">
+        <span class="role">Visual Design</span>
+        <span class="name">Adobe Illustrator (Dala Horse Theme)</span>
+      </div>
+    </div>
+
+    <div class="credit-section">
+      <h2>Special Thanks</h2>
+      <p class="thanks-msg">そして、聴いてくださっているすべてのリスナーの皆様。</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .credit-container { max-width: 600px; margin: 80px auto; text-align: center; }
+  .credit-header h1 { font-size: 48px; font-weight: 900; letter-spacing: 0.1em; color: #1a1a1a; }
+  .credit-header p { color: #3f51b5; font-weight: bold; margin-bottom: 60px; }
+
+  .credit-section { margin-bottom: 50px; }
+  h2 { font-size: 14px; color: #aaa; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; }
+  
+  .member { margin-bottom: 15px; }
+  .role { display: block; font-size: 12px; color: #888; }
+  .name { font-size: 18px; font-weight: bold; color: #333; }
+  
+  .thanks-msg { font-size: 16px; color: #555; font-style: italic; margin-top: 30px; }
+</style>

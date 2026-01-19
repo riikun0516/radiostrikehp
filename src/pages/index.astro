@@ -1,0 +1,112 @@
+---
+export const prerender = false;
+import Layout from '../layouts/Layout.astro';
+const kBaseApiUrl = 'https://api.radiostrike.jp';
+
+interface Episode {
+  id: number;
+  title: string;
+  description: string;
+  publish_at: string;
+}
+
+let episodes: Episode[] = [];
+try {
+  const res = await fetch(`${kBaseApiUrl}/api/podcast/episodes`);
+  if (res.ok) episodes = await res.json();
+} catch (e) { console.error(e); }
+
+const latestEp = episodes[0];
+const otherEps = episodes.slice(1);
+
+// ご提示いただいた AdSense パラメータ
+const AD_CLIENT = "pub-4672119085382684";
+const AD_SLOT = "6212645008";
+---
+
+<Layout title="Home">
+  {latestEp && (
+    <section class="hero-blue animate-in">
+      <div class="hero-content">
+        <span class="badge">LATEST RELEASE</span>
+        <h1>{latestEp.title}</h1>
+        <div class="description-area">
+          <div class="html-render" set:html={latestEp.description} />
+        </div>
+        <a href={`/episode/${latestEp.id}`} class="play-btn-white">最新回を聴く</a>
+      </div>
+      <div class="hero-visual">
+        <img src={`${kBaseApiUrl}/uploads/podcast_cover.jpg`} alt="Cover" />
+      </div>
+    </section>
+  )}
+
+  {/* 指定された AdSense ユニット */}
+  <div class="ad-slot-wrapper">
+    <ins class="adsbygoogle"
+         style="display:block; width: 100%; height: 100%;"
+         data-ad-client={AD_CLIENT}
+         data-ad-slot={AD_SLOT}
+         data-ad-format="horizontal"
+         data-full-width-responsive="false"></ins>
+  </div>
+
+  <div class="episode-grid">
+    {otherEps.map((ep: Episode, index: number) => (
+      <article class="ep-card animate-in" style={`animation-delay: ${0.05 * (index + 1)}s`}>
+        <a href={`/episode/${ep.id}`}>
+          <div class="thumb-wrap">
+            <img src={`${kBaseApiUrl}/uploads/podcast_cover.jpg`} alt={ep.title} class="zoom-img" />
+          </div>
+          <div class="card-body">
+            <time>{new Date(ep.publish_at).toLocaleDateString('ja-JP')}</time>
+            <h3>{ep.title}</h3>
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  /* アニメーション */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+
+  /* ヒーロー：青のグラデーション */
+  .hero-blue {
+    display: flex; gap: 50px; align-items: center;
+    background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+    padding: 60px; border-radius: 24px; color: white; margin-bottom: 60px;
+    box-shadow: 0 20px 40px rgba(63, 81, 181, 0.2);
+  }
+  .hero-content { flex: 1.2; }
+  .badge { color: #ff4081; font-weight: 900; font-size: 12px; letter-spacing: 0.1em; }
+  h1 { font-size: 32px; font-weight: 900; margin: 15px 0; }
+  .description-area { margin-bottom: 30px; pointer-events: none; opacity: 0.9; }
+  .html-render :global(a) { color: inherit !important; text-decoration: none !important; }
+
+  .play-btn-white {
+    display: inline-block; background: white; color: #3f51b5;
+    padding: 14px 32px; border-radius: 100px; font-weight: 900;
+  }
+
+  .hero-visual img { width: 100%; max-width: 320px; border-radius: 12px; }
+
+  /* グリッドとホバーアニメーション */
+  .episode-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+  .ep-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  }
+  .ep-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(63, 81, 181, 0.15); }
+  .thumb-wrap { overflow: hidden; aspect-ratio: 1; }
+  .zoom-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .ep-card:hover .zoom-img { transform: scale(1.1); }
+  .card-body { padding: 20px; }
+  time { font-size: 12px; color: #3f51b5; font-weight: 800; }
+
+  @media (max-width: 800px) {
+    .hero-blue { flex-direction: column-reverse; padding: 40px 20px; text-align: center; }
+  }
+</style>

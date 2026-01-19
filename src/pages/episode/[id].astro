@@ -1,0 +1,138 @@
+---
+export const prerender = false;
+import Layout from '../../layouts/Layout.astro';
+const { id } = Astro.params;
+const kBaseApiUrl = 'https://api.radiostrike.jp';
+
+interface Episode {
+  id: number;
+  title: string;
+  description: string;
+  file_url: string;
+  publish_at: string;
+}
+
+let ep: Episode | null = null;
+try {
+  const res = await fetch(`${kBaseApiUrl}/api/podcast/episodes/${id}`);
+  if (res.ok) ep = await res.json();
+} catch (e) { console.error(e); }
+
+const RSS_LOGO_URL = `${kBaseApiUrl}/uploads/podcast_cover.jpg`; 
+---
+
+<Layout title={ep ? ep.title : "Now Playing"}>
+  {ep ? (
+    <div class="ep-page animate-in">
+      <header class="ep-hero-indigo">
+        <div class="hero-inner">
+          <div class="title-with-logo">
+            <img src={RSS_LOGO_URL} alt="Logo" class="header-logo" />
+            <div class="title-text">
+              <time>{new Date(ep.publish_at).toLocaleDateString('ja-JP')}</time>
+              <h1>{ep.title}</h1>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="player-outer">
+        <div class="custom-player-card">
+          <audio id="audio-player" src={ep.file_url}></audio>
+          <div class="player-main-controls">
+            <button id="play-pause" class="main-play-btn"><span id="play-icon">▶</span></button>
+            <div class="seek-bar-area">
+              <input type="range" id="seek-bar" value="0" step="0.1" class="indigo-range">
+              <div class="time-labels">
+                <span id="current-time">0:00</span>
+                <span id="duration">0:00</span>
+              </div>
+            </div>
+          </div>
+          <div class="volume-control">
+             <span class="vol-label">Vol</span>
+             <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1" class="vol-range">
+          </div>
+        </div>
+      </div>
+
+      <article class="ep-notes">
+        <div class="notes-card">
+          <div class="section-title">EPISODE NOTES</div>
+          <div class="description-text" set:html={ep.description} />
+        </div>
+      </article>
+
+      <div class="ep-footer">
+        <a href="/" class="btn-back">← 一覧に戻る</a>
+      </div>
+    </div>
+  ) : (
+    <div class="error-msg">データを取得できませんでした。</div>
+  )}
+</Layout>
+
+<script is:inline>
+  const audio = document.getElementById('audio-player');
+  const playBtn = document.getElementById('play-pause');
+  const playIcon = document.getElementById('play-icon');
+  const seekBar = document.getElementById('seek-bar');
+  const currentTimeDisplay = document.getElementById('current-time');
+  const durationDisplay = document.getElementById('duration');
+  const volumeBar = document.getElementById('volume-bar');
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playIcon.innerText = '〓';
+    } else {
+      audio.pause();
+      playIcon.innerText = '▶';
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const val = (audio.currentTime / audio.duration) * 100;
+    seekBar.value = val || 0;
+    currentTimeDisplay.innerText = formatTime(audio.currentTime);
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    durationDisplay.innerText = formatTime(audio.duration);
+  });
+
+  seekBar.addEventListener('input', () => {
+    audio.currentTime = (seekBar.value / 100) * audio.duration;
+  });
+
+  volumeBar.addEventListener('input', () => {
+    audio.volume = volumeBar.value;
+  });
+
+  function formatTime(s) {
+    if (isNaN(s)) return "0:00";
+    const min = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+  }
+</script>
+
+<style>
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeInUp 0.7s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
+  .ep-hero-indigo { background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%); padding: 80px 20px 140px; border-radius: 0 0 50px 50px; color: white; }
+  .title-with-logo { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 25px; }
+  .header-logo { width: 100px; height: 100px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); object-fit: cover; }
+  .player-outer { max-width: 800px; margin: -80px auto 0; padding: 0 20px; }
+  .custom-player-card { background: #fff; padding: 35px; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+  .player-main-controls { display: flex; align-items: center; gap: 25px; margin-bottom: 15px; }
+  .main-play-btn { width: 70px; height: 70px; border-radius: 50%; background: #3f51b5; color: white; border: none; font-size: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .indigo-range { width: 100%; accent-color: #3f51b5; cursor: pointer; }
+  .time-labels { display: flex; justify-content: space-between; font-size: 13px; color: #666; margin-top: 8px; font-weight: bold; }
+  .volume-control { display: flex; justify-content: flex-end; align-items: center; gap: 10px; border-top: 1px solid #f0f0f0; padding-top: 15px; }
+  .vol-label { font-size: 11px; font-weight: 900; color: #3f51b5; }
+  .vol-range { width: 80px; accent-color: #3f51b5; }
+  .notes-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 40px; }
+  .section-title { font-size: 13px; color: #3f51b5; font-weight: 900; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+  .btn-back { display: inline-block; color: #3f51b5; font-weight: bold; border: 2px solid #3f51b5; padding: 12px 30px; border-radius: 100px; margin-top: 40px; }
+</style>

@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ライセンス - RadioStrike">
+  <article class="legal-page">
+    <h1>ライセンス</h1>
+    <p>RadioStrikeのシステム、およびWebサイトの構築には、以下のオープンソースソフトウェアが使用されています。</p>
+
+    <div class="license-grid">
+      <section class="license-item">
+        <h2>Astro</h2>
+        <p>Copyright (c) 2021-present Astro Contributors</p>
+        <p class="type">MIT License</p>
+      </section>
+
+      <section class="license-item">
+        <h2>Flask (Python Backend)</h2>
+        <p>Copyright 2010 Pallets</p>
+        <p class="type">BSD-3-Clause License</p>
+      </section>
+
+
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .legal-page { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+  h1 { font-size: 32px; font-weight: 900; margin-bottom: 30px; }
+  .license-grid { display: grid; gap: 20px; margin-top: 40px; }
+  .license-item { background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #eee; }
+  h2 { font-size: 18px; color: #3f51b5; margin-bottom: 10px; }
+  .type { font-weight: bold; color: #666; font-size: 13px; }
+</style>

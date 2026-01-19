@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const kBaseApiUrl = 'https://api.radiostrike.jp';
+
+const distroLinks = [
+  { title: 'RSSフィード (XML)', url: `${kBaseApiUrl}/feed/podcast`, color: '#F26522', icon: '📡' },
+  { title: 'YouTube Music', url: 'https://music.youtube.com/playlist?list=PLx7Lve6KV9137E5OiOMOymZ5RUpH_2Kk5', color: '#FF0000', icon: '▶️' },
+  { title: 'Spotify', url: 'http://open.spotify.com/show/...', color: '#1DB954', icon: '🎵' },
+  { title: 'Apple Podcasts', url: 'https://podcasts.apple.com/us/podcast/radiostrike/id1705335293', color: '#872EC4', icon: '🎙️' },
+  { title: 'Amazon Music', url: 'https://music.amazon.co.jp/podcasts/41e520c8-6c13-4ff1-9aee-2e0a39e21a60/radiostrike', color: '#00A8E1', icon: '💿' },
+  { title: 'Google Podcasts', url: 'https://podcasts.google.com/...', color: '#FBBC05', icon: '📊' },
+  { title: 'Listen', url: 'https://listen.style/p/wbfnshjw', color: '#000000', icon: '🎧' },
+];
+---
+
+<Layout title="配信サイト一覧 - RadioStrike">
+  <div class="links-container">
+    <h1>配信サイト一覧</h1>
+    <div class="link-list">
+      {distroLinks.map(link => (
+        <a href={link.url} target="_blank" rel="noopener" class="link-card">
+          <div class="icon-box" style={`color: ${link.color}`}>{link.icon}</div>
+          <span class="link-title">{link.title}</span>
+          <span class="external-icon">↗</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="ad-banner">
+      <p>Advertisement</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* SNSページと同じ共通スタイルを使用 */
+  .links-container { max-width: 600px; margin: 40px auto; padding: 0 20px; }
+  h1 { font-size: 24px; font-weight: bold; text-align: center; margin-bottom: 40px; }
+  .link-list { display: flex; flex-direction: column; gap: 15px; }
+  .link-card { display: flex; align-items: center; background: white; padding: 16px 20px; border-radius: 12px; text-decoration: none; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .icon-box { font-size: 24px; width: 40px; display: flex; justify-content: center; }
+  .link-title { flex: 1; font-weight: bold; margin-left: 15px; }
+  .external-icon { color: #ccc; }
+  .ad-banner { margin-top: 40px; padding: 20px; background: #f9f9f9; text-align: center; border-radius: 8px; color: #aaa; }
+</style>
