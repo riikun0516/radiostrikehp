@@ -1,11 +1,8 @@
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
-
-import vercel from '@astrojs/vercel';
-
-import cloudflare from '@astrojs/cloudflare';
+import vercel from '@astrojs/vercel/serverless'; // SSR用
 
 export default defineConfig({
   output: 'server',
-  adapter: cloudflare(),
+  adapter: vercel(),
+  site: 'https://www.radiostrike.jp',
 });

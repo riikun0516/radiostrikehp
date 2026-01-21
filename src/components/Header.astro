@@ -1,70 +1,149 @@
 ---
-const navItems = [
-  { name: 'ホーム', href: '/' },
-  { name: 'お知らせ', href: '/news' },
-  { name: 'お便り', href: '/letter' },
-  { name: '配信サイト', href: '/distribution' },
-  { name: '公式SNS', href: '/sns' },
-  { name: 'Contact', href: '/contact' },
-];
 const logoUrl = "https://api.radiostrike.jp/uploads/logo.png";
 ---
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="logo">
-      <img src={logoUrl} alt="RadioStrike" />
-    </a>
-    <nav class="nav-container">
-      <ul class="nav-list">
-        {navItems.map(item => (
-          <li><a href={item.href} class="nav-link">{item.name}</a></li>
-        ))}
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-area">
+      <a href="/">
+        <img src={logoUrl} alt="RadioStrike Logo" class="site-logo" />
+      </a>
+    </div>
+
+    <nav class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/news">NEWS</a></li>
+        <li><a href="/contact">CONTACT</a></li>
+        <li><a href="/letter">LETTER</a></li>
+        <li><a href="/license">LICENSE</a></li>
       </ul>
     </nav>
+
+    <div class="header-actions">
+      <a href="/podcast" class="cta-button">LISTEN NOW</a>
+    </div>
   </div>
 </header>
 
 <style>
-  .site-header {
-    background: #fff;
-    border-bottom: 1px solid #eee;
+  .main-header {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
-    z-index: 1000;
-    height: 70px;
+    z-index: 9999;
+    height: 80px;
     display: flex;
     align-items: center;
+    transition: all 0.3s ease;
   }
-  .header-inner {
+
+  .header-container {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .logo img { height: 40px; width: auto; }
-  
-  /* ナビゲーションの崩れを修正 */
-  .nav-list {
-    display: flex;
-    list-style: none; /* ドットを消去 */
-    margin: 0;
-    padding: 0;
-    gap: 20px;
-  }
-  .nav-link {
-    text-decoration: none;
-    color: #444;
-    font-weight: 600;
-    font-size: 14px;
-    transition: color 0.2s;
-  }
-  .nav-link:hover { color: #3f51b5; }
 
-  @media (max-width: 850px) {
-    .nav-container { display: none; } /* モバイル時は一旦非表示に */
+  /* ロゴエリア */
+  .logo-area a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+  }
+
+  .site-logo {
+    height: 45px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .logo-area a:hover .site-logo {
+    transform: rotate(-5deg) scale(1.05);
+  }
+
+  .site-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: #1a237e; /* Indigo Dark */
+    letter-spacing: -0.02em;
+  }
+
+  /* ナビゲーション */
+  .nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3f51b5; /* Indigo */
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #3f51b5;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* アクションボタン */
+  .cta-button {
+    background: #3f51b5;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(63, 81, 181, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: #1a237e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(63, 81, 181, 0.4);
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 900px) {
+    .nav-menu {
+      display: none; /* シンプルにするためモバイルでは一旦非表示 */
+    }
+    .header-container {
+      padding: 0 20px;
+    }
+    .site-name {
+      display: none; /* モバイルではロゴのみ */
+    }
   }
 </style>
