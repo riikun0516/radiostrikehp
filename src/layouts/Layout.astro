@@ -1,57 +1,92 @@
 ---
-// 1. 各コンポーネントをインポート
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
 }
-
 const { title } = Astro.props;
----
 
+const GTM_ID = 'GTM-K7CSFFHQ';
+---
 <!doctype html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width" />
     <title>{title} | RadioStrike</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <script is:inline define:vars={{ GTM_ID }}>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer',GTM_ID);</script>
+    <script is:inline>
+      setTimeout(function() {
+        try {
+          var adElement = document.querySelector('.adsbygoogle');
+          if (!adElement) return;
+
+          var clientId = adElement.getAttribute('data-ad-client');
+          var script = document.createElement('script');
+          script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + clientId;
+          script.async = true;
+          script.crossOrigin = "anonymous";
+          document.head.appendChild(script);
+
+          script.onload = function() {
+            // ページ内のすべての adsbygoogle ユニットを初期化
+            var ads = document.querySelectorAll('.adsbygoogle');
+            ads.forEach(function() {
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            });
+          };
+        } catch (e) {
+          console.error("AdSense Load Error:", e);
+        }
+      }, 500);
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <Header />
+    <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <main class="global-container">
+    <Header />
+    <main class="global-wrapper">
       <slot />
     </main>
-
     <Footer />
-
-    <style is:global>
-      /* リセットCSSや共通設定 */
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        background-color: #f9f9f9;
-        color: #333;
-      }
-      main {
-        flex: 1;
-      }
-      .global-container {
-        padding-top: 40px;
-        max-width: 1000px; /* お好みの幅に調整してください */
-        margin: 0 auto;
-        padding-left: 20px;
-        padding-right: 20px;
-        width: 100%;
-      }
-    </style>
   </body>
 </html>
+
+<style is:global>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  ul, li { list-style: none !important; }
+  a { text-decoration: none; color: inherit; }
+  
+  html {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #fdfdfd;
+    color: #1a1a1a;
+  }
+  .global-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  /* 広告表示エリアのラッパー */
+  .ad-slot-wrapper {
+    margin: 40px 0;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 12px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
