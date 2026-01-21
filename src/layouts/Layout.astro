@@ -1,14 +1,57 @@
-<style is:global>
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 画面全体の高さを確保 */
-  }
-  main {
-    flex: 1; /* コンテンツが少ない時もフッターを下に押しやる */
-  }
-  /* ヘッダーが sticky の場合、コンテンツの開始位置を調整 */
-  .global-container {
-    padding-top: 40px; 
-  }
-</style>
+---
+// 1. 各コンポーネントをインポート
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | RadioStrike</title>
+  </head>
+  <body>
+    <Header />
+
+    <main class="global-container">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <style is:global>
+      /* リセットCSSや共通設定 */
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      main {
+        flex: 1;
+      }
+      .global-container {
+        padding-top: 40px;
+        max-width: 1000px; /* お好みの幅に調整してください */
+        margin: 0 auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+      }
+    </style>
+  </body>
+</html>
