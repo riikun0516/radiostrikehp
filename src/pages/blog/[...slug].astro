@@ -1,6 +1,10 @@
 ---
+export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+
+
+
 
 // 1. getStaticPaths の戻り値に型を付ける
 export async function getStaticPaths() {
