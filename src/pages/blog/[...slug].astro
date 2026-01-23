@@ -1,23 +1,13 @@
 ---
-export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-
-
-
-// 1. getStaticPaths の戻り値に型を付ける
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, 
     props: { entry },
   }));
-}
-
-// 2. Props の型を明示的に定義する
-interface Props {
-  entry: CollectionEntry<'blog'>;
 }
 
 const { entry } = Astro.props;
@@ -25,10 +15,21 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
-  <article class="prose">
-    <h1>{entry.data.title}</h1>
-    <p>投稿日: {new Date(entry.data.date).toLocaleDateString('ja-JP')}</p>
-    <hr />
-    <Content />
-  </article>
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    <article>
+      <header class="mb-10 pb-8 border-b border-slate-100">
+        <time class="text-slate-400">{new Date(entry.data.date).toLocaleDateString('ja-JP')}</time>
+        <h1 class="text-4xl font-black text-slate-900 mt-2">{entry.data.title}</h1>
+      </header>
+
+      {/* proseクラスがMarkdownを自動で綺麗にします */}
+      <div class="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-img:rounded-xl">
+        <Content />
+      </div>
+    </article>
+
+    <div class="mt-16 pt-8 border-t border-slate-100">
+      <a href="/blog" class="text-slate-500 hover:text-blue-600">← 記事一覧に戻る</a>
+    </div>
+  </main>
 </Layout>

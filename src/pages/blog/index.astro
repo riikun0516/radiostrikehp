@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout title="記事一覧">
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-3xl font-black mb-10 text-slate-800">Blog Archive</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}`} class="group bg-white border border-slate-200 rounded-xl p-6 transition-all hover:shadow-lg hover:border-blue-500">
+          <time class="text-sm text-slate-400 mb-2 block">
+            {new Date(post.data.date).toLocaleDateString('ja-JP')}
+          </time>
+          <h2 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 mb-4">
+            {post.data.title}
+          </h2>
+          <span class="text-blue-500 font-semibold text-sm">Read More →</span>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
