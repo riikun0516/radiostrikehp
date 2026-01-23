@@ -1,13 +1,16 @@
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import tailwind from '@astrojs/tailwind'; // こちらをインポート
-
+import sitemap from '@astrojs/sitemap';
 export default defineConfig({
+  site: 'https://radiostrike.jp',
   output: 'server',
   adapter: vercel(),
 
   // Viteのpluginsではなく、ここでintegrationsとして登録します
-  integrations: [tailwind()], 
+  integrations: [tailwind(),
+    sitemap(),
+  ], 
 
   image: {
     service: {
