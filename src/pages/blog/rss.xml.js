@@ -1,13 +1,10 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import sanitizeHtml from 'sanitize-html';
-import MarkdownIt from 'markdown-it';
-const parser = new MarkdownIt();
 
 export async function GET(context) {
   const blog = await getCollection('blog');
   
-  // 日付で降順（新しい順）にソート
+  // 新しい順にソート（日付が文字列でも動くように工夫）
   const sortedPosts = blog.sort((a, b) => 
     new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
   );
@@ -18,10 +15,9 @@ export async function GET(context) {
     site: context.site,
     items: sortedPosts.map((post) => ({
       title: post.data.title,
-      pubDate: new Date(post.data.date), // Dateオブジェクトに変換
-      description: post.data.description || '',
-      // RSSリーダーで本文を読めるようにする場合（オプション）
-      content: sanitizeHtml(parser.render(post.body)),
+      pubDate: new Date(post.data.date),
+      // descriptionが空なら本文の冒頭を少し入れる
+      description: post.data.description || post.body.substring(0, 160).replace(/[#*`]/g, '') + '...',
       link: `/blog/${post.slug}/`,
     })),
     customData: `<language>ja-jp</language>`,
