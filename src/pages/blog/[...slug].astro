@@ -1,52 +1,47 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
-export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, 
-    props: { entry },
-  }));
+// サーバーサイドでのリクエストから slug を取得
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
 }
 
-const { entry } = Astro.props;
+// 記事データを取得
+const entry = await getEntry('blog', slug);
 
-// 1. 万が一レンダリングに失敗してもエラーを拾えるようにする
-let Content;
-try {
-  const rendered = await entry.render();
-  Content = rendered.Content;
-} catch (e) {
-  console.error(e);
+// 記事が存在しない場合は404へ飛ばす（ここで500エラーを回避）
+if (!entry) {
+  return Astro.redirect('/404');
 }
 
-// 2. 日付の変換を安全に行う関数
-const formatDate = (date: any) => {
-  try {
-    const d = new Date(date);
-    return isNaN(d.getTime()) ? '日付不明' : d.toLocaleDateString('ja-JP');
-  } catch {
-    return '日付不明';
-  }
-};
+const { Content } = await entry.render();
+
+// 日付の安全な処理
+const date = entry.data.date ? new Date(entry.data.date).toLocaleDateString('ja-JP') : '日付不明';
 ---
 
 <Layout title={entry.data.title}>
   <main class="max-w-4xl mx-auto px-6 py-16">
     <article>
       <header class="mb-10 pb-8 border-b border-slate-100">
-        <time class="text-slate-400">{formatDate(entry.data.date)}</time>
-        <h1 class="text-4xl font-black text-slate-900 mt-2">{entry.data.title}</h1>
+        <time class="text-slate-400">{date}</time>
+        <h1 class="text-4xl font-black text-slate-900 mt-2 leading-tight">
+          {entry.data.title}
+        </h1>
       </header>
 
       <div class="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-img:rounded-xl">
-        {Content ? <Content /> : <p>記事の読み込みに失敗しました。</p>}
+        <Content />
       </div>
     </article>
 
     <div class="mt-16 pt-8 border-t border-slate-100">
-      <a href="/blog" class="text-slate-500 hover:text-blue-600">← 記事一覧に戻る</a>
+      <a href="/blog" class="text-slate-500 hover:text-blue-600 inline-flex items-center">
+        ← 記事一覧に戻る
+      </a>
     </div>
   </main>
 </Layout>
