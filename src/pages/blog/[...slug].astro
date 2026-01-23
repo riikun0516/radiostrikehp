@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// 1. getStaticPaths の戻り値に型を付ける
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+// 2. Props の型を明示的に定義する
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <article class="prose">
+    <h1>{entry.data.title}</h1>
+    <p>投稿日: {new Date(entry.data.date).toLocaleDateString('ja-JP')}</p>
+    <hr />
+    <Content />
+  </article>
+</Layout>

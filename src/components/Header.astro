@@ -1,149 +1,158 @@
 ---
+// Header.astro
 const logoUrl = "https://api.radiostrike.jp/uploads/logo.png";
 ---
-
-<header class="main-header">
-  <div class="header-container">
-    <div class="logo-area">
+<header>
+  <nav class="nav-container">
+    <div class="logo">
       <a href="/">
-        <img src={logoUrl} alt="RadioStrike Logo" class="site-logo" />
+        <img src={logoUrl} alt="RadioStrike Logo" class="logo-img" width="180" height="40" />
       </a>
     </div>
 
-    <nav class="nav-menu">
-      <ul class="nav-links">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/news">NEWS</a></li>
-        <li><a href="/contact">CONTACT</a></li>
-        <li><a href="/letter">LETTER</a></li>
-        <li><a href="/license">LICENSE</a></li>
-      </ul>
-    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
 
-    <div class="header-actions">
-      <a href="/distribution" class="cta-button">LISTEN NOW</a>
-    </div>
-  </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">ホーム</a></li>
+      <li><a href="/news">お知らせ</a></li>
+      <li><a href="/letter">お便り</a></li>
+      <li><a href="/contact">お問い合わせ</a></li>
+      
+    </ul>
+  </nav>
 </header>
 
 <style>
-  .main-header {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  header {
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    padding: 0.5rem 0;
     position: sticky;
     top: 0;
-    z-index: 9999;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
+    z-index: 1000;
   }
-
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 30px;
+  .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
-  /* ロゴエリア */
-  .logo-area a {
+  /* ロゴ画像の設定 */
+  .logo a {
     display: flex;
     align-items: center;
-    gap: 15px;
-    text-decoration: none;
   }
-
-  .site-logo {
-    height: 45px;
+  .logo-img {
+    height: 45px; /* ロゴの高さをお好みで調整してください */
     width: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    object-fit: contain;
   }
 
-  .logo-area a:hover .site-logo {
-    transform: rotate(-5deg) scale(1.05);
-  }
-
-  .site-name {
-    font-size: 22px;
-    font-weight: 900;
-    color: #1a237e; /* Indigo Dark */
-    letter-spacing: -0.02em;
-  }
-
-  /* ナビゲーション */
+  /* ナビゲーションメニュー */
   .nav-links {
     display: flex;
-    gap: 35px;
     list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
   }
-
   .nav-links a {
     text-decoration: none;
-    color: #555;
-    font-size: 14px;
+    color: #444;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    position: relative;
-    padding: 5px 0;
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    transition: color 0.2s;
   }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #3f51b5; /* Indigo */
-    transition: width 0.3s ease;
-  }
-
   .nav-links a:hover {
     color: #3f51b5;
   }
 
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-
-  /* アクションボタン */
-  .cta-button {
+  /* お問い合わせボタン */
+  .contact-btn {
     background: #3f51b5;
-    color: white;
-    padding: 10px 22px;
-    border-radius: 50px;
-    font-size: 13px;
-    font-weight: 800;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(63, 81, 181, 0.3);
-    transition: all 0.3s ease;
+    color: #fff !important;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: background 0.2s !important;
+  }
+  .contact-btn:hover {
+    background: #303f9f;
   }
 
-  .cta-button:hover {
-    background: #1a237e;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(63, 81, 181, 0.4);
+  /* スマホ用ハンバーガー */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+  }
+  .bar {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 6px 0;
+    background-color: #333;
+    transition: 0.3s;
   }
 
-  /* レスポンシブ対応 */
+  /* レスポンシブ (スマホ版) */
   @media (max-width: 900px) {
-    .nav-menu {
-      display: none; /* シンプルにするためモバイルでは一旦非表示 */
+    .hamburger { display: block; }
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background: white;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.05);
     }
-    .header-container {
-      padding: 0 20px;
+    .nav-links.active {
+      max-height: 500px;
     }
-    .site-name {
-      display: none; /* モバイルではロゴのみ */
+    .nav-links li {
+      width: 100%;
+      border-top: 1px solid #f5f5f5;
     }
+    .nav-links a {
+      display: block;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .contact-btn { border-radius: 0; }
+
+    /* アニメーション：X印に変形 */
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
   }
 </style>
+
+<script>
+  const initMenu = () => {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    
+    hamburger?.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks?.classList.toggle('active');
+    });
+  };
+
+  initMenu();
+  // Vercelでの遷移後もスクリプトを再実行
+  document.addEventListener('astro:after-swap', initMenu);
+</script>
