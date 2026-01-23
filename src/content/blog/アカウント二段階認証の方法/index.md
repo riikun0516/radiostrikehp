@@ -103,37 +103,37 @@ Google AuthenticatorとはいってますがGoogle以外でも可能です。
   
   
 
-![Authy](images/r8tU-_PXdZUUfKT0MxqOtkfUAOpjGHA0NHgxYAVjWq-IZZEQTCKHfc2bcycgzEskXU0p=s128)
+<img alt="Authy](images/r8tU-_PXdZUUfKT0MxqOtkfUAOpjGHA0NHgxYAVjWq-IZZEQTCKHfc2bcycgzEskXU0p=s128)
 
 Authy
 
 Authy Inc.無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/authy/id494168017?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.authy.authy)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/authy/id494168017?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.authy.authy)
 
   
   
   
 
-![Microsoft Authenticator](images/512x512bb.jpg)
+<img alt="Microsoft Authenticator](images/512x512bb.jpg)
 
 Microsoft Authenticator
 
 Microsoft Corporation無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/microsoft-authenticator/id983156458?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.azure.authenticator)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/microsoft-authenticator/id983156458?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.azure.authenticator)
 
   
   
   
 
-![Google Authenticator](images/512x512bb.jpg)
+<img alt="Google Authenticator](images/512x512bb.jpg)
 
 Google Authenticator
 
 Google LLC無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/google-authenticator/id388497605?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/google-authenticator/id388497605?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 
   
   

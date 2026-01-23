@@ -55,7 +55,7 @@ GooglePlayStoreですとこんな画面になります。
   
   
 
-![](images/Screenshot_20200619-202125-512x1024.jpg)
+<img alt="](images/Screenshot_20200619-202125-512x1024.jpg)
 
   
   
@@ -87,9 +87,9 @@ GooglePlayStoreですとこんな画面になります。
   
   
 
-- ![](images/Screenshot_20200619-202857-512x1024.jpg)
+- <img alt="](images/Screenshot_20200619-202857-512x1024.jpg)
     
-- ![](images/Screenshot_20200619-202905-512x1024.jpg)
+- <img alt="](images/Screenshot_20200619-202905-512x1024.jpg)
     
 
   
@@ -142,9 +142,9 @@ GooglePlayStoreですとこんな画面になります。
   
   
 
-- ![](images/Screenshot_20200619-203606-512x1024.jpg)
+- <img alt="](images/Screenshot_20200619-203606-512x1024.jpg)
     
-- ![](images/Screenshot_20200619-203619-512x1024.jpg)
+- <img alt="](images/Screenshot_20200619-203619-512x1024.jpg)
     
 
   
@@ -169,7 +169,7 @@ GooglePlayStoreですとこんな画面になります。
   
   
 
-![](images/Screenshot_20200619-203719-512x1024.jpg)
+<img alt="](images/Screenshot_20200619-203719-512x1024.jpg)
 
   
   
@@ -193,7 +193,7 @@ GooglePlayStoreですとこんな画面になります。
   
   
 
-![](images/Screenshot_20200619-203753-512x1024.jpg)
+<img alt="](images/Screenshot_20200619-203753-512x1024.jpg)
 
   
   
@@ -217,7 +217,7 @@ Bluetoothの有効を求めてきます。
   
   
 
-![](images/Screenshot_20200619-203825-512x1024.jpg)
+<img alt="](images/Screenshot_20200619-203825-512x1024.jpg)
 
   
   
@@ -241,7 +241,7 @@ Google開発者サービスからの通知が出ます
   
   
 
-![](images/Screenshot_20200619-203917-512x1024.jpg)
+<img alt="](images/Screenshot_20200619-203917-512x1024.jpg)
 
   
   
@@ -259,7 +259,7 @@ ONにするをタップしてください
   
   
 
-![](images/Screenshot_20200619-204051-512x1024.jpg)
+<img alt="](images/Screenshot_20200619-204051-512x1024.jpg)
 
   
   

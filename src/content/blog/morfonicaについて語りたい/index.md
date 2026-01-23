@@ -50,7 +50,7 @@ categories:
 
 <figure>
 
-![](images/ESBc-7DU0AIcNGd)
+<img alt="](images/ESBc-7DU0AIcNGd)
 
 <figcaption>
 
@@ -101,7 +101,7 @@ https://www.youtube.com/watch?v=gnXKN4Tgxww
   
   
   
-![](images/body_0.png)
+<img alt="](images/body_0.png)
   
   
   

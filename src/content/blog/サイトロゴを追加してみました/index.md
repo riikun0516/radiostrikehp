@@ -91,7 +91,7 @@ PowerPointで作ったのですが使い方を思いっきり忘れてちょっ�
   
   
 
-![](images/ACtC-3e6Ocg0NNAHdsd-EEO-yNkOssQa53i8NnM8fGBvaLhWqOg3wevKCT76X0foxPjSg0ie90cFyUxyGMPCMgqknKywni9F8K76MscB5sBYDWIAhS50Q_VMob9TkX-sUOK74gvsWFFV5zL408KeQgprXNAK=w768-h96-no)
+<img alt="](images/ACtC-3e6Ocg0NNAHdsd-EEO-yNkOssQa53i8NnM8fGBvaLhWqOg3wevKCT76X0foxPjSg0ie90cFyUxyGMPCMgqknKywni9F8K76MscB5sBYDWIAhS50Q_VMob9TkX-sUOK74gvsWFFV5zL408KeQgprXNAK=w768-h96-no)
 
   
   

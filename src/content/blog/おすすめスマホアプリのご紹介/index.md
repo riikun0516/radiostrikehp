@@ -103,13 +103,13 @@ Apple Musicを解約し乗り換え
   
   
 
-![Spotify: お気に入りの音楽やアーティストを聴く](images/512x512bb.jpg)
+<img alt="Spotify: お気に入りの音楽やアーティストを聴く](images/512x512bb.jpg)
 
 Spotify: お気に入りの音楽やアーティストを聴く
 
 Spotify Ltd.無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/spotify-%25E3%2581%258A%25E6%25B0%2597%25E3%2581%25AB%25E5%2585%25A5%25E3%2582%258A%25E3%2581%25AE%25E9%259F%25B3%25E6%25A5%25BD%25E3%2582%2584%25E3%2582%25A2%25E3%2583%25BC%25E3%2583%2586%25E3%2582%25A3%25E3%2582%25B9%25E3%2583%2588%25E3%2582%2592%25E8%2581%25B4%25E3%2581%258F/id324684580?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.spotify.music)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/spotify-%25E3%2581%258A%25E6%25B0%2597%25E3%2581%25AB%25E5%2585%25A5%25E3%2582%258A%25E3%2581%25AE%25E9%259F%25B3%25E6%25A5%25BD%25E3%2582%2584%25E3%2582%25A2%25E3%2583%25BC%25E3%2583%2586%25E3%2582%25A3%25E3%2582%25B9%25E3%2583%2588%25E3%2582%2592%25E8%2581%25B4%25E3%2581%258F/id324684580?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.spotify.music)
 
   
   
@@ -145,13 +145,13 @@ Spotify Ltd.無料posted with[アプリーチ](https://mama-hack.com/app-reach/ 
   
   
 
-![特務機関NERV防災](images/512x512bb.jpg)
+<img alt="特務機関NERV防災](images/512x512bb.jpg)
 
 特務機関NERV防災
 
 Gehirn Inc.無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/%25E7%2589%25B9%25E5%258B%2599%25E6%25A9%259F%25E9%2596%25A2nerv%25E9%2598%25B2%25E7%2581%25BD/id1472338480?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=app.nerv)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/%25E7%2589%25B9%25E5%258B%2599%25E6%25A9%259F%25E9%2596%25A2nerv%25E9%2598%25B2%25E7%2581%25BD/id1472338480?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=app.nerv)
 
   
   
@@ -174,13 +174,13 @@ Gehirn Inc.無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "
   
   
 
-![バンドリ！ ガールズバンドパーティ！](images/512x512bb.jpg)
+<img alt="バンドリ！ ガールズバンドパーティ！](images/512x512bb.jpg)
 
 バンドリ！ ガールズバンドパーティ！
 
 Craft Egg Inc.無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/%25E3%2583%2590%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AA-%25E3%2582%25AC%25E3%2583%25BC%25E3%2583%25AB%25E3%2582%25BA%25E3%2583%2590%25E3%2583%25B3%25E3%2583%2589%25E3%2583%2591%25E3%2583%25BC%25E3%2583%2586%25E3%2582%25A3/id1195834442?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=jp.co.craftegg.band)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/%25E3%2583%2590%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AA-%25E3%2582%25AC%25E3%2583%25BC%25E3%2583%25AB%25E3%2582%25BA%25E3%2583%2590%25E3%2583%25B3%25E3%2583%2589%25E3%2583%2591%25E3%2583%25BC%25E3%2583%2586%25E3%2582%25A3/id1195834442?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=jp.co.craftegg.band)
 
   
   
@@ -216,13 +216,13 @@ Androidでは通勤タイマー(ここはiOSでも使える)に学校の最寄�
   
   
 
-![Yahoo!乗換案内](images/512x512bb.jpg)
+<img alt="Yahoo!乗換案内](images/512x512bb.jpg)
 
 Yahoo!乗換案内
 
 Yahoo Japan Corp.無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/yahoo-%25E4%25B9%2597%25E6%258F%259B%25E6%25A1%2588%25E5%2586%2585/id291676451?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=jp.co.yahoo.android.apps.transit)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/yahoo-%25E4%25B9%2597%25E6%258F%259B%25E6%25A1%2588%25E5%2586%2585/id291676451?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=jp.co.yahoo.android.apps.transit)
 
   
   

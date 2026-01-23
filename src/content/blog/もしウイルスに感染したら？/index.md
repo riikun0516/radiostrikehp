@@ -108,11 +108,11 @@ IPAに報告することをおすすめします。
   
   
   
-![](images/EYT9OidUMAAKKqK)
+<img alt="](images/EYT9OidUMAAKKqK)
   
   
   
-![](images/EYT9O0xUMAERd--)
+<img alt="](images/EYT9O0xUMAERd--)
   
   
   

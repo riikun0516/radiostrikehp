@@ -78,7 +78,7 @@ LinuxMintの19.1TessaのMateエディション(メイトじゃなくマテ)を�
   
   
 
-![](images/Screenshot-at-2019-04-01-22-13-17-2.png)
+<img alt="](images/Screenshot-at-2019-04-01-22-13-17-2.png)
 
   
   
@@ -102,7 +102,7 @@ LinuxMintの19.1TessaのMateエディション(メイトじゃなくマテ)を�
   
   
 
-![](images/Screenshot-at-2019-04-01-22-16-33-1.png)
+<img alt="](images/Screenshot-at-2019-04-01-22-16-33-1.png)
 
   
   
@@ -114,7 +114,7 @@ LinuxMintの19.1TessaのMateエディション(メイトじゃなくマテ)を�
   
   
 
-![](images/Screenshot-at-2019-04-01-22-21-46-1.png)
+<img alt="](images/Screenshot-at-2019-04-01-22-21-46-1.png)
 
   
   

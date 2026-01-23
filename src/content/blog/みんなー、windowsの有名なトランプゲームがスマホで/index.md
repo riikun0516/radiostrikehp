@@ -30,13 +30,13 @@ categories:
   
   
 
-![Microsoft Solitaire Collection](images/512x512bb.jpg)
+<img alt="Microsoft Solitaire Collection](images/512x512bb.jpg)
 
 Microsoft Solitaire Collection
 
 Microsoft Corporation無料posted with[アプリーチ](https://mama-hack.com/app-reach/ "アプリーチ")
 
-[![](images/itune_ja.svg)](https://apps.apple.com/jp/app/microsoft-solitaire-collection/id1103438575?uo=4)[![](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.microsoft.microsoftsolitairecollection)
+[<img alt="](images/itune_ja.svg)](https://apps.apple.com/jp/app/microsoft-solitaire-collection/id1103438575?uo=4)[<img alt="](images/gplay_ja.png)](https://play.google.com/store/apps/details?id=com.microsoft.microsoftsolitairecollection)
 
   
   

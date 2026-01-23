@@ -51,7 +51,7 @@ categories:
 
 <figure>
 
-![](images/DSC_0001-2-768x1024.jpg)
+<img alt="](images/DSC_0001-2-768x1024.jpg)
 
 <figcaption>
 

@@ -5,7 +5,7 @@ date: 2021-03-22
 
 NTTドコモはドコモショップで接客をしている店員さんのユニフォームデザインを刷新することを発表した。
 
-[![](images/NTTdocomoUniform-1-300x200.jpg)](https://repo.riikunlog.com/img/NTTdocomoUniform.webp)
+[<img alt="](images/NTTdocomoUniform-1-300x200.jpg)](https://repo.riikunlog.com/img/NTTdocomoUniform.webp)
 
 新しいユニフォームデザインはフォーマルからカジュアルに変更することでドコモショップに来店するお客様がリラックスできることを目指すとのことです。
 
@@ -21,7 +21,7 @@ NTTドコモはドコモショップで接客をしている店員さんのユ�
 
 デザイナーは佐藤オオキ氏率いるデザインオフィスnendo監修のもと制作を進めました。と書いているが、僕はデザインには疎いので下記文章はドコモサイトから丸パクリさせてもらう。
 
-[![](images/image-1-200x300.jpg)](https://1.bp.blogspot.com/-UEbnKko7rps/YFh_RkRrNRI/AAAAAAAAITE/F-5Q3BRbdMotyErFl6pvZ5o0sNyAH7HiACPcBGAYYCw/s432/image.webp)
+[<img alt="](images/image-1-200x300.jpg)](https://1.bp.blogspot.com/-UEbnKko7rps/YFh_RkRrNRI/AAAAAAAAITE/F-5Q3BRbdMotyErFl6pvZ5o0sNyAH7HiACPcBGAYYCw/s432/image.webp)
 
  
 

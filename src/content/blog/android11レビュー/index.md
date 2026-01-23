@@ -19,7 +19,7 @@ Android One S5(SoftBank)
 
 ## 
 
-[![](images/Screenshot_20210225-154005.webp)](https://1.bp.blogspot.com/-akGQiR8StVI/YFhQT1RvodI/AAAAAAAAISA/gYsyRW0WOQY442OYECWJpvhUKtrfFYA-ACLcBGAsYHQ/s288/Screenshot_20210225-154005.webp)
+[<img alt="](images/Screenshot_20210225-154005.webp)](https://1.bp.blogspot.com/-akGQiR8StVI/YFhQT1RvodI/AAAAAAAAISA/gYsyRW0WOQY442OYECWJpvhUKtrfFYA-ACLcBGAsYHQ/s288/Screenshot_20210225-154005.webp)
 
   
   
@@ -30,7 +30,7 @@ Android One S5(SoftBank)
 
 一応Android10時点では無効にされてたカスタムランチャーにおいてのジェスチャーナビゲーションが使えるようになってました。
 
-[![](images/Screenshot_20210225-193717.png)](https://1.bp.blogspot.com/-6p6ymMljFp8/YDfIcPKFZWI/AAAAAAAAH8E/8KzmAKfasxQAmBWJp-zggpJ3h6lVS5jxACPcBGAsYHg/s2160/Screenshot_20210225-193717.png)
+[<img alt="](images/Screenshot_20210225-193717.png)](https://1.bp.blogspot.com/-6p6ymMljFp8/YDfIcPKFZWI/AAAAAAAAH8E/8KzmAKfasxQAmBWJp-zggpJ3h6lVS5jxACPcBGAsYHg/s2160/Screenshot_20210225-193717.png)
 
   
 
@@ -44,11 +44,11 @@ Android One S5(SoftBank)
 
 いちいち広げないとシークバーがいじれないのがちょっと不満でした。
 
-[![](images/Screenshot_20210225-192908.png)](https://1.bp.blogspot.com/-qZz1hxaWLrI/YDfJP_Ok7yI/AAAAAAAAH8M/v6uzahRUV1cE4YhEfpn2rxEhwyKzkzCXACPcBGAsYHg/s2160/Screenshot_20210225-192908.png)
+[<img alt="](images/Screenshot_20210225-192908.png)](https://1.bp.blogspot.com/-qZz1hxaWLrI/YDfJP_Ok7yI/AAAAAAAAH8M/v6uzahRUV1cE4YhEfpn2rxEhwyKzkzCXACPcBGAsYHg/s2160/Screenshot_20210225-192908.png)
 
   
 
-[![](images/Screenshot_20210225-192913.png)](https://1.bp.blogspot.com/-PEGXDZhDbDQ/YDfJP1SrNAI/AAAAAAAAH8M/AA8ku692rlsXzAxlPZExNYDKIdPtMwCKwCPcBGAsYHg/s2160/Screenshot_20210225-192913.png)
+[<img alt="](images/Screenshot_20210225-192913.png)](https://1.bp.blogspot.com/-PEGXDZhDbDQ/YDfJP1SrNAI/AAAAAAAAH8M/AA8ku692rlsXzAxlPZExNYDKIdPtMwCKwCPcBGAsYHg/s2160/Screenshot_20210225-192913.png)
 
   
 
@@ -98,7 +98,7 @@ Android11は主立っているのは通知です。
 
 会話タブができました。
 
-[![](images/Screenshot_20210225-193647.png)](https://1.bp.blogspot.com/-AEvIm7_vEWM/YDfQ5aUvdcI/AAAAAAAAH9A/BpQs1KcRRYA4kTAUvbhhnEZYwcii-JhqgCLcBGAsYHQ/s2160/Screenshot_20210225-193647.png)
+[<img alt="](images/Screenshot_20210225-193647.png)](https://1.bp.blogspot.com/-AEvIm7_vEWM/YDfQ5aUvdcI/AAAAAAAAH9A/BpQs1KcRRYA4kTAUvbhhnEZYwcii-JhqgCLcBGAsYHQ/s2160/Screenshot_20210225-193647.png)
 
 一応LINEなどで使えます。
 
@@ -120,7 +120,7 @@ TwitterのDMでは使えません。
 
 ですが今までとは少し違います。
 
-[![](images/Screenshot_20210225-222156.png)](https://1.bp.blogspot.com/-o5hrV2XEQPI/YDfSTOQwMBI/AAAAAAAAH9I/eevCq3thFQ0zrv-tXQL5g801m_44e6jawCPcBGAsYHg/s2160/Screenshot_20210225-222156.png)
+[<img alt="](images/Screenshot_20210225-222156.png)](https://1.bp.blogspot.com/-o5hrV2XEQPI/YDfSTOQwMBI/AAAAAAAAH9I/eevCq3thFQ0zrv-tXQL5g801m_44e6jawCPcBGAsYHg/s2160/Screenshot_20210225-222156.png)
 
   
 
@@ -166,7 +166,7 @@ TwitterのDMでは使えません。
 
 アプリ切替画面では選択されているアプリの現在の画面をスクショしたりできます・
 
-[![](images/Screenshot_20210225-193505.png)](https://1.bp.blogspot.com/-h_T5qflndwY/YDfTIws8R2I/AAAAAAAAH9Q/-Rs19Q3QuQYuUr9UoeeVwmdQrzASSRI5QCPcBGAsYHg/s2160/Screenshot_20210225-193505.png)
+[<img alt="](images/Screenshot_20210225-193505.png)](https://1.bp.blogspot.com/-h_T5qflndwY/YDfTIws8R2I/AAAAAAAAH9Q/-Rs19Q3QuQYuUr9UoeeVwmdQrzASSRI5QCPcBGAsYHg/s2160/Screenshot_20210225-193505.png)
 
   
 

@@ -54,7 +54,7 @@ https://twitter.com/android\_4545/status/1260846345314660355
   
   
   
-![](images/EX9tD8gVcAAHfwf)
+<img alt="](images/EX9tD8gVcAAHfwf)
   
   
   

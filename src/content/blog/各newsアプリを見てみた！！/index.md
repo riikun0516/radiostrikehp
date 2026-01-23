@@ -27,7 +27,7 @@ MicrosoftがWindowsPhoneの開発をやめてiOS、Android用アプリの開発�
 
 大体の県は県の名前がちらっと出てきた場合や隣県のNewsも表示されることがあるのですが、これはローカルな話題がチェックできます。
 
-[![](images/Screenshot_20210129-213754.webp)](https://1.bp.blogspot.com/-xkDRJtZsZk0/YFhRlsnvohI/AAAAAAAAISI/TvK2fDGuf1gFkRco2Z5P3MQHQtcwrqaJACLcBGAsYHQ/s320/Screenshot_20210129-213754.webp)
+[<img alt="](images/Screenshot_20210129-213754.webp)](https://1.bp.blogspot.com/-xkDRJtZsZk0/YFhRlsnvohI/AAAAAAAAISI/TvK2fDGuf1gFkRco2Z5P3MQHQtcwrqaJACLcBGAsYHQ/s320/Screenshot_20210129-213754.webp)
 
   
 
@@ -41,7 +41,7 @@ MicrosoftがWindowsPhoneの開発をやめてiOS、Android用アプリの開発�
 
 このアプリの特徴はニュースの配信元をドコモで管理しているので、個人ブログの記事は出てこないことです。
 
-[![](images/Screenshot_20210129-214323.png)](https://1.bp.blogspot.com/-uXLW33dia1A/YBQDvZFo_EI/AAAAAAAAHp4/uMhGutsOu4gmf3i1PDJyt0i3aqV4xwTcwCPcBGAsYHg/s2160/Screenshot_20210129-214323.png)
+[<img alt="](images/Screenshot_20210129-214323.png)](https://1.bp.blogspot.com/-uXLW33dia1A/YBQDvZFo_EI/AAAAAAAAHp4/uMhGutsOu4gmf3i1PDJyt0i3aqV4xwTcwCPcBGAsYHg/s2160/Screenshot_20210129-214323.png)
 
   
 
@@ -55,7 +55,7 @@ Googleが提供しているニュースアプリです
 
 一部の有料記事も見れたりする機能もあるそうです
 
-[![](images/Screenshot_20210129-214937.png)](https://1.bp.blogspot.com/-huKHBW_Hbys/YBQE3yNappI/AAAAAAAAHqM/OnYiGocZAigABM_zlbFKUlveyCdmk869ACPcBGAsYHg/s2160/Screenshot_20210129-214937.png)
+[<img alt="](images/Screenshot_20210129-214937.png)](https://1.bp.blogspot.com/-huKHBW_Hbys/YBQE3yNappI/AAAAAAAAHqM/OnYiGocZAigABM_zlbFKUlveyCdmk869ACPcBGAsYHg/s2160/Screenshot_20210129-214937.png)
 
 Googleってすべてのものに対して言えるけどUIが大きくて見やすいのが特徴だったりします。
 
@@ -65,7 +65,7 @@ Googleってすべてのものに対して言えるけどUIが大きくて見や
 
 クーポン機能などがある中で大きな特徴は紙をめくるアニメーションがある点ですかね！！
 
-[![](images/Screenshot_20210129-215306.png)](https://1.bp.blogspot.com/-vZxXVc1HpdY/YBQFlNh-jII/AAAAAAAAHqk/wdTClB4s6BMN1Z55Sv2aPJnl0hl9F35rwCPcBGAsYHg/s2160/Screenshot_20210129-215306.png)
+[<img alt="](images/Screenshot_20210129-215306.png)](https://1.bp.blogspot.com/-vZxXVc1HpdY/YBQFlNh-jII/AAAAAAAAHqk/wdTClB4s6BMN1Z55Sv2aPJnl0hl9F35rwCPcBGAsYHg/s2160/Screenshot_20210129-215306.png)
 
 でも広告が邪魔くさい
 
@@ -79,7 +79,7 @@ Googleってすべてのものに対して言えるけどUIが大きくて見や
 
 PodCastも聞けます
 
-[![](images/Screenshot_20210129-215715.png)](https://1.bp.blogspot.com/-NgCPLnZ6tk0/YBQGi_TxOFI/AAAAAAAAHq4/xUfBXP_1GQwo-w9RyKIkMLdESqOgD_l9wCPcBGAsYHg/s2160/Screenshot_20210129-215715.png)
+[<img alt="](images/Screenshot_20210129-215715.png)](https://1.bp.blogspot.com/-NgCPLnZ6tk0/YBQGi_TxOFI/AAAAAAAAHq4/xUfBXP_1GQwo-w9RyKIkMLdESqOgD_l9wCPcBGAsYHg/s2160/Screenshot_20210129-215715.png)
 
   
 

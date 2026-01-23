@@ -26,7 +26,7 @@ URLはこちら！！
 
 このシステムのすごいところを見てみる。
 
-![](images/JRC_TI_Mihara.jpeg)
+<img alt="](images/JRC_TI_Mihara.jpeg)
 
 駅の乗り場がわかるシステムになっている。
 

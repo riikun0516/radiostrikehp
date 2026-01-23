@@ -91,12 +91,12 @@ YouTubeMusic
   
   
   
-[![Google Play で手に入れよう](images/ja_badge_web_generic.png)](https://play.google.com/store/music/artist/%E7%BE%8E%E9%9B%B2%E3%81%93%E3%81%AE%E3%81%AF_CV_%E4%B8%8A%E5%9D%82%E3%81%99%E3%81%BF%E3%82%8C?id=Aqdh4o4x3amg7e2rb7bsrfkbaam&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)  
+[<img alt="Google Play で手に入れよう](images/ja_badge_web_generic.png)](https://play.google.com/store/music/artist/%E7%BE%8E%E9%9B%B2%E3%81%93%E3%81%AE%E3%81%AF_CV_%E4%B8%8A%E5%9D%82%E3%81%99%E3%81%BF%E3%82%8C?id=Aqdh4o4x3amg7e2rb7bsrfkbaam&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)  
   
   
   
   
-[![Play Music で音楽を聴こう](images/ja_badge_web_music.png)](https://play.google.com/music/m/Aqdh4o4x3amg7e2rb7bsrfkbaam?t=CV&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-mu-PartBadge-Mar2515-1)  
+[<img alt="Play Music で音楽を聴こう](images/ja_badge_web_music.png)](https://play.google.com/music/m/Aqdh4o4x3amg7e2rb7bsrfkbaam?t=CV&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-mu-PartBadge-Mar2515-1)  
   
   
   
