@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: riikun0516/radiostrikehp
+  branch: main
+  base_url: https://radiostrike.jp # 自分のサイトURL
+  auth_endpoint: api/auth # 自分のAPI
+
+media_folder: "public/images" # 画像の保存先
+public_folder: "/images"
+
+collections:
+  - name: "blog"
+    label: "ブログ記事"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "公開日", name: "date", widget: "datetime" }
+      - { label: "説明文", name: "description", widget: "text", required: false }
+      - { label: "本文", name: "body", widget: "markdown" }
