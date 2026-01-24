@@ -15,16 +15,32 @@ export default async function handler(req, res) {
   });
   const data = await response.json();
   
-  // Decap CMSにトークンを渡すためのHTML
+  // 認証失敗時のエラー処理を追加
+  if (data.error) {
+    return res.status(401).send(`Auth Error: ${data.error_description}`);
+  }
+
   const content = `
-    <script>
-      const receiveMessage = (e) => {
-        window.opener.postMessage('authorization:github:success:${JSON.stringify({token: data.access_token, provider: "github"})}', e.origin);
-        window.removeEventListener("message", receiveMessage, false);
-      }
-      window.addEventListener("message", receiveMessage, false);
-      window.opener.postMessage("authorizing:github", "*");
-    </script>
+    <!DOCTYPE html>
+    <html>
+    <body>
+      <script>
+        const token = "${data.access_token}";
+        const provider = "github";
+        
+        // 親ウィンドウ（管理画面）にトークンを送信
+        if (window.opener) {
+          window.opener.postMessage(
+            'authorization:github:success:' + JSON.stringify({token, provider}),
+            window.location.origin
+          );
+        } else {
+          document.body.innerHTML = "ログインに成功しました。このタブを閉じて管理画面に戻ってください。";
+        }
+      </script>
+    </body>
+    </html>
   `;
+  res.setHeader('Content-Type', 'text/html');
   res.send(content);
 }
