@@ -1,15 +1,15 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import sanitizeHtml from 'sanitize-html';
-import MarkdownIt from 'markdown-it';
-const parser = new MarkdownIt();
 
 export async function GET(context) {
   const blog = await getCollection('blog');
-  const sortedPosts = blog.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  
+  const sortedPosts = blog.sort((a, b) => 
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
 
-  return rss({
-    title: 'RadioStrike',
+  const response = await rss({
+    title: 'りーろぐ',
     description: 'ITインフラ、サーバー、開発に関する技術ブログ',
     site: context.site,
     items: sortedPosts.map((post) => ({
@@ -17,8 +17,17 @@ export async function GET(context) {
       pubDate: new Date(post.data.date),
       description: post.data.description || "",
       link: `/blog/${post.slug}/`,
-      // 本文をHTMLに変換して全文配信
-      content: sanitizeHtml(parser.render(post.body || '')),
+      content: post.body,
     })),
+    // XML宣言に encoding="UTF-8" を明示的に追加
+    customData: `<language>ja-jp</language>`,
+  });
+
+  // レスポンスヘッダーを上書きして UTF-8 を強制する
+  return new Response(response.body, {
+    headers: {
+      ...response.headers,
+      'Content-Type': 'application/xml; charset=utf-8',
+    },
   });
 }

@@ -1,4 +1,3 @@
-// api/callback.js
 export default async function handler(req, res) {
   const { code } = req.query;
   const response = await fetch("https://github.com/login/oauth/access_token", {
@@ -14,11 +13,13 @@ export default async function handler(req, res) {
     }),
   });
   const data = await response.json();
-  
-  // 認証失敗時のエラー処理を追加
+
   if (data.error) {
     return res.status(401).send(`Auth Error: ${data.error_description}`);
   }
+
+  // wwwありのドメインを明示的に指定
+  const targetOrigin = "https://www.radiostrike.jp";
 
   const content = `
     <!DOCTYPE html>
@@ -28,14 +29,16 @@ export default async function handler(req, res) {
         const token = "${data.access_token}";
         const provider = "github";
         
-        // 親ウィンドウ（管理画面）にトークンを送信
         if (window.opener) {
+          // メッセージを親ウィンドウへ送信
           window.opener.postMessage(
             'authorization:github:success:' + JSON.stringify({token, provider}),
-            window.location.origin
+            "${targetOrigin}"
           );
+          // 少し待ってから閉じる（確実に送信するため）
+          setTimeout(() => window.close(), 200);
         } else {
-          document.body.innerHTML = "ログインに成功しました。このタブを閉じて管理画面に戻ってください。";
+          document.body.innerHTML = "ログイン完了。この画面を閉じてください。";
         }
       </script>
     </body>
