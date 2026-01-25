@@ -8,5 +8,17 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // 認証後のメッセージを監視するスクリプト
+    window.addEventListener("message", (event) => {
+      // 自分のドメイン以外からのメッセージは無視（セキュリティ）
+      if (event.origin !== window.location.origin) return;
+
+      // Decap CMSが期待する形式の合言葉が届いたら、CMS側に通知する
+      if (event.data && typeof event.data === 'string' && event.data.includes("authorization:github:success")) {
+        console.log("認証トークンを受信しました。ログイン処理を開始します。");
+      }
+    }, false);
+  </script>
 </body>
 </html>
