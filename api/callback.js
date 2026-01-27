@@ -32,23 +32,35 @@ export default async function handler(req, res) {
     }
 
     // 成功時：親画面へ合言葉を送信
-    const content = `
-      <script>
-        (function() {
-          const message = "authorization:github:success:" + JSON.stringify({
-            token: "${data.access_token}", 
-            provider: "github"
-          });
-          if (window.opener) {
-            window.opener.postMessage(message, "https://www.radiostrike.jp");
-            setTimeout(() => window.close(), 500);
-          } else {
-            document.body.innerHTML = "認証成功。このタブを閉じてください。";
-          }
-        })();
-      </script>
-      <p style="text-align:center; padding-top:50px;">認証に成功しました！画面を閉じます...</p>
-    `;
+// api/callback.js の script 部分を以下に差し替え
+const content = `
+  <script>
+    (function() {
+      const token = "${data.access_token}";
+      const message = "authorization:github:success:" + JSON.stringify({
+        token: token, 
+        provider: "github"
+      });
+
+      if (window.opener) {
+        // 第2引数を "*" にすることで、ブラウザのセキュリティ制限を回避して親に届けます
+        window.opener.postMessage(message, "*");
+        console.log("親画面にメッセージを送りました");
+        
+        // 確実に届くよう、少し長めに待ってから閉じます
+        setTimeout(() => {
+          window.close();
+        }, 1500);
+      } else {
+        document.body.innerHTML = "認証成功。このタブを閉じて管理画面に戻ってください。";
+      }
+    })();
+  </script>
+  <p style="text-align:center; padding-top:50px; font-family:sans-serif;">
+    認証に成功しました！<br>
+    間もなく画面が切り替わります...
+  </p>
+`;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.send(content);
 
