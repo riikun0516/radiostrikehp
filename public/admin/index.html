@@ -8,22 +8,5 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.10.0/dist/decap-cms.js"></script>
-
-  <script>
-    // ポップアップからのトークンを待ち受ける
-    window.addEventListener("message", (event) => {
-      // 合言葉の形式を確認
-      if (typeof event.data === 'string' && event.data.includes("authorization:github:success")) {
-        console.log("トークンを受信しました。CMSに渡します。");
-        
-        // Decap CMS側の内部処理にトークンを渡す
-        const content = event.data.split('authorization:github:success:')[1];
-        const res = JSON.parse(content);
-        
-        // ログイン成功を擬似的に発生させて管理画面を切り替える
-        window.opener.postMessage('authorization:github:success:' + content, event.origin);
-      }
-    }, false);
-  </script>
 </body>
 </html>
