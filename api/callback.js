@@ -1,4 +1,4 @@
-// api/callback.js
+// api/callback.js の中身をこちらに差し替え
 export default async function handler(req, res) {
   const { code } = req.query;
   const response = await fetch("https://github.com/login/oauth/access_token", {
@@ -20,15 +20,17 @@ export default async function handler(req, res) {
       (function() {
         const token = "${data.access_token}";
         const provider = "github";
-        // wwwありを明示
-        const target = "https://www.radiostrike.jp";
         
         if (window.opener) {
+          // 親ウィンドウへトークンを送信
           window.opener.postMessage(
             'authorization:github:success:' + JSON.stringify({token, provider}),
-            target
+            window.location.origin
           );
-          window.close();
+          // 確実に送信されるのを待ってから閉じる
+          setTimeout(() => { window.close(); }, 500);
+        } else {
+          document.body.innerHTML = "ログイン完了。タブを閉じてください。";
         }
       })();
     </script>
