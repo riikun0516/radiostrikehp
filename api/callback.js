@@ -16,24 +16,22 @@ export default async function handler(req, res) {
   const data = await response.json();
 
   const content = `
-    <!DOCTYPE html>
-    <html>
-    <body>
-      <script>
+    <script>
+      (function() {
         const token = "${data.access_token}";
         const provider = "github";
+        // wwwありを明示
+        const target = "https://www.radiostrike.jp";
         
         if (window.opener) {
-          // 通信相手を制限せずメッセージを送る
           window.opener.postMessage(
             'authorization:github:success:' + JSON.stringify({token, provider}),
-            "*"
+            target
           );
           window.close();
         }
-      </script>
-    </body>
-    </html>
+      })();
+    </script>
   `;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.send(content);
