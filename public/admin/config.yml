@@ -12,6 +12,13 @@ collections:
   - name: "blog"
     label: "ブログ記事"
     folder: "src/content/blog"
+    # サブディレクトリの中まで探しに行く設定
+    nested:
+      depth: 100 # どのくらい深く探すか
+    # 各記事のファイル名を指定（ディレクトリ名/index.md の形式）
+    path: "{{slug}}/index" 
+    extension: "md"
+    format: "frontmatter"
     create: true
     slug: "{{slug}}"
     fields:
