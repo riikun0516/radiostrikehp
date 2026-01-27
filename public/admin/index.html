@@ -8,10 +8,28 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.10.0/dist/decap-cms.js"></script>
   <script>
-    // 予備の受信処理
     window.addEventListener("message", (event) => {
-      if (event.data && typeof event.data === 'string' && event.data.includes("authorization:github:success")) {
-        console.log("CMS: トークンを受信しました");
+      // 届いたメッセージが認証成功の合言葉かチェック
+      if (typeof event.data === 'string' && event.data.includes("authorization:github:success")) {
+        const content = event.data.split('authorization:github:success:')[1];
+        const res = JSON.parse(content);
+
+        if (res.token) {
+          // 【重要】ブラウザにログイン情報を直接保存する
+          const user = {
+            backendName: "github",
+            token: res.token,
+            useExternalPersistentStorage: true
+          };
+          localStorage.setItem("decap-cms-user", JSON.stringify(user));
+          
+          console.log("ログイン情報を保存しました。リロードします。");
+          
+          // 0.5秒後に画面を強制リフレッシュして、ログイン後の画面を出させる
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
       }
     }, false);
   </script>
