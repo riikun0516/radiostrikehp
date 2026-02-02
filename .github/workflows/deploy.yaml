@@ -1,39 +1,33 @@
-name: Deploy Astro to Local IIS
+name: Super Simple Deploy (Astro to IIS)
 
 on:
   push:
-    branches:
-      - main  # mainブランチにpushされたら発動
+    branches: [ main ]
 
 jobs:
-  deploy:
-    runs-on: self-hosted  # 先ほど登録したサーバー上で実行
-
+  build-and-deploy:
+    runs-on: self-hosted # あなたのサーバーで直接動く
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Astro
-        run: npm run build
+      - name: Install and Build Astro
+        run: |
+          npm install
+          npm run build
 
       - name: Deploy to IIS Folder
         shell: powershell
         run: |
           $dest = "C:\inetpub\wwwroot\RADIOSTRIKE"
+          # 1. 前の残骸を掃除（node_modules以外）
+          Get-ChildItem -Path $dest -Exclude "node_modules" | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
           
-          # 1. 既存ファイルを掃除（web.config以外を消す、または全削除）
-          Remove-Item -Path "$dest\*" -Recurse -Force -ErrorAction SilentlyContinue
+          # 2. まとめてコピー（package.jsonも含む）
+          Copy-Item -Path "dist/*" -Destination $dest -Recurse -Force
+          Copy-Item -Path "package.json" -Destination $dest -Force
           
-          # 2. clientフォルダの中身（web.configを含む）をルートにコピー
-          Copy-Item -Path "dist/client/*" -Destination $dest -Recurse -Force
-          
-          # 3. serverフォルダをルートにコピー
-          Copy-Item -Path "dist/server" -Destination $dest -Recurse -Force
+          # 3. その場でライブラリを揃えて、PM2を再起動
+          Set-Location $dest
+          npm install --omit=dev
+          pm2 restart radiostrike-astro || pm2 start server/entry.mjs --name "radiostrike-astro"
