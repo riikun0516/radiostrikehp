@@ -20,21 +20,18 @@ jobs:
         shell: powershell
         run: |
           $dest = "C:\inetpub\wwwroot\RADIOSTRIKE"
-          # 1. 掃除
           Get-ChildItem -Path $dest -Exclude "node_modules" | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
-          
-          # 2. コピー
           Copy-Item -Path "dist/*" -Destination $dest -Recurse -Force
           Copy-Item -Path "package.json" -Destination $dest -Force
           
-          # 3. インストールと再起動
           Set-Location $dest
           npm install --omit=dev
           
-          # PM2の再起動（もし動いてなければ新規開始）
-          if (pm2 describe "radiostrike-astro") {
-              pm2 restart "radiostrike-astro"
+          # npx を使うことで、パスが通っていなくても pm2 を確実に実行できます
+          if (npx pm2 describe "radiostrike-astro") {
+              npx pm2 restart "radiostrike-astro"
           } else {
               $env:HOST="0.0.0.0"
-              pm2 start server/entry.mjs --name "radiostrike-astro"
+              $env:PORT="4321"
+              npx pm2 start server/entry.mjs --name "radiostrike-astro"
           }
