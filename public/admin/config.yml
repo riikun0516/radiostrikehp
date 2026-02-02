@@ -2,7 +2,7 @@ backend:
   name: github
   repo: riikun0516/radiostrikehp
   branch: main
-  base_url: https://api.radiostrike.jp # 自分のサイトURL
+  base_url: https://www.radiostrike.jp # 自分のサイトURL
   auth_endpoint: api/auth # 自分のAPI
 
 media_folder: "public/images" # 画像の保存先
