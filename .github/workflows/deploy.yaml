@@ -15,23 +15,21 @@ jobs:
         run: |
           npm install
           npm run build
-
       - name: Deploy to IIS Folder
         shell: powershell
         run: |
           $dest = "C:\inetpub\wwwroot\RADIOSTRIKE"
+          
+          # 1. node_modules 以外の古いファイルを削除
+          # ここで一旦 web.config も消えますが、この後すぐに最新版をコピーします
           Get-ChildItem -Path $dest -Exclude "node_modules" | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+          
+          # 2. dist 内の成果物をコピー（ここに web.config が含まれるようにします）
           Copy-Item -Path "dist/*" -Destination $dest -Recurse -Force
-          Copy-Item -Path "package.json" -Destination $dest -Force
           
-          Set-Location $dest
-          npm install --omit=dev
-          
-          # npx を使うことで、パスが通っていなくても pm2 を確実に実行できます
-          if (npx pm2 describe "radiostrike-astro") {
-              npx pm2 restart "radiostrike-astro"
-          } else {
-              $env:HOST="0.0.0.0"
-              $env:PORT="4321"
-              npx pm2 start server/entry.mjs --name "radiostrike-astro"
+          # 3. package.json と web.config をプロジェクトルートや public から確実にコピー
+          # ※ web.config が public フォルダにある場合、dist に入っているはずですが念のため
+          if (Test-Path "public/web.config") {
+            Copy-Item -Path "public/web.config" -Destination $dest -Force
           }
+          Copy-Item -Path "package.json" -Destination $dest -Force
