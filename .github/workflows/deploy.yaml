@@ -28,8 +28,12 @@ jobs:
         shell: powershell
         run: |
           $dest = "C:\inetpub\wwwroot\RADIOSTRIKE"
-          if (!(Test-Path $dest)) { New-Item -Path $dest -ItemType Directory }
-          # 既存ファイルを削除してからコピー
+          
+          # 1. 既存ファイルを掃除（web.config以外を消す、または全削除）
           Remove-Item -Path "$dest\*" -Recurse -Force -ErrorAction SilentlyContinue
-          Copy-Item -Path "dist\*" -Destination $dest -Recurse -Force
-          Write-Host "Deployment successful"
+          
+          # 2. clientフォルダの中身（web.configを含む）をルートにコピー
+          Copy-Item -Path "dist/client/*" -Destination $dest -Recurse -Force
+          
+          # 3. serverフォルダをルートにコピー
+          Copy-Item -Path "dist/server" -Destination $dest -Recurse -Force
