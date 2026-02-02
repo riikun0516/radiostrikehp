@@ -27,12 +27,9 @@ jobs:
       - name: Deploy to IIS Folder
         shell: powershell
         run: |
-          # IISの公開フォルダパス（実際の環境に合わせて書き換えてください）
           $dest = "C:\inetpub\wwwroot\RADIOSTRIKE"
-          
-          # フォルダがなければ作成
           if (!(Test-Path $dest)) { New-Item -Path $dest -ItemType Directory }
-          
-          # distの中身をコピー（-Force で上書き）
-          Copy-Item -Path "dist/*" -Destination $dest -Recurse -Force
-          Write-Host "IISへのデプロイが完了しました。"
+          # 既存ファイルを削除してからコピー
+          Remove-Item -Path "$dest\*" -Recurse -Force -ErrorAction SilentlyContinue
+          Copy-Item -Path "dist\*" -Destination $dest -Recurse -Force
+          Write-Host "Deployment successful"
