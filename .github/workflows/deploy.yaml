@@ -20,14 +20,21 @@ jobs:
         shell: powershell
         run: |
           $dest = "C:\inetpub\wwwroot\RADIOSTRIKE"
-          # 1. 前の残骸を掃除（node_modules以外）
+          # 1. 掃除
           Get-ChildItem -Path $dest -Exclude "node_modules" | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
           
-          # 2. まとめてコピー（package.jsonも含む）
+          # 2. コピー
           Copy-Item -Path "dist/*" -Destination $dest -Recurse -Force
           Copy-Item -Path "package.json" -Destination $dest -Force
           
-          # 3. その場でライブラリを揃えて、PM2を再起動
+          # 3. インストールと再起動
           Set-Location $dest
           npm install --omit=dev
-          pm2 restart radiostrike-astro || pm2 start server/entry.mjs --name "radiostrike-astro"
+          
+          # PM2の再起動（もし動いてなければ新規開始）
+          if (pm2 describe "radiostrike-astro") {
+              pm2 restart "radiostrike-astro"
+          } else {
+              $env:HOST="0.0.0.0"
+              pm2 start server/entry.mjs --name "radiostrike-astro"
+          }
