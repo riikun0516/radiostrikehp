@@ -1,0 +1,38 @@
+name: Deploy Astro to Local IIS
+
+on:
+  push:
+    branches:
+      - main  # mainブランチにpushされたら発動
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # 先ほど登録したサーバー上で実行
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Astro
+        run: npm run build
+
+      - name: Deploy to IIS Folder
+        shell: powershell
+        run: |
+          # IISの公開フォルダパス（実際の環境に合わせて書き換えてください）
+          $dest = "C:\inetpub\wwwroot\RADIOSTRIKE"
+          
+          # フォルダがなければ作成
+          if (!(Test-Path $dest)) { New-Item -Path $dest -ItemType Directory }
+          
+          # distの中身をコピー（-Force で上書き）
+          Copy-Item -Path "dist/*" -Destination $dest -Recurse -Force
+          Write-Host "IISへのデプロイが完了しました。"
